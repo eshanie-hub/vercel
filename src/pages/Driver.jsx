@@ -7,7 +7,7 @@ import TempLastAlert from '../charts/temperature/Last_Alert';
 import HumLastAlert from '../charts/humidity/Last_Alert';
 import RouteMap from '../assets/RouteMap';
 import Chatbot from './Chatbot';
-import API_BASE_URL from '../../route/api';
+import API_BASE_URL from '../route/api';
 
 // Initialize Socket outside to prevent multiple connections
 const socket = io(`${API_BASE_URL}`);

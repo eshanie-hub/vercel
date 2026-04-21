@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import bgImage from '../assets/login.png';
-import API_BASE_URL from '../../route/api';
+import API_BASE_URL from '../route/api';
 
 const loginStyles = `
   .auth-container {
