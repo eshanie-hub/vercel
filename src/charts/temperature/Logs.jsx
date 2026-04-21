@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import API_BASE_URL from '../../route/api';
 
 const logStyles = `
   .logs-container {
@@ -429,8 +430,8 @@ function groupLogsByMinute(logs, anchorTs = 0) {
     const fetchRoutes = async () => {
       try {
         const [routesRes, currentRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/route"),
-          axios.get("http://localhost:5000/api/route/current"),
+          axios.get(`${API_BASE_URL}/api/route`),
+          axios.get(`${API_BASE_URL}/api/route/current`),
         ]);
         const allRoutes = Array.isArray(routesRes.data) ? routesRes.data : [];
         setRoutes(allRoutes);
@@ -449,8 +450,8 @@ function groupLogsByMinute(logs, anchorTs = 0) {
     const fetchLogs = async () => {
       try {
         const url = selectedRouteId
-          ? `http://localhost:5000/api/temperature?route_id=${encodeURIComponent(selectedRouteId)}`
-          : "http://localhost:5000/api/temperature";
+          ? `${API_BASE_URL}/api/temperature?route_id=${encodeURIComponent(selectedRouteId)}`
+          : `${API_BASE_URL}/api/temperature`;
         const res = await axios.get(url);
         setLogs(res.data.sort((a, b) => new Date(b.createdAt || b.timestamp) - new Date(a.createdAt || a.timestamp)));
       } catch (e) { console.error("Error fetching logs:", e); }

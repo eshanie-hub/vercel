@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import bgImage from '../assets/register.png';
+import API_BASE_URL from '../../route/api';
 
 const regStyles = `
   .auth-container {
@@ -238,7 +239,7 @@ export default function Register() {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         medicineBoxId: boxId,
         userRole: role,
         password: password

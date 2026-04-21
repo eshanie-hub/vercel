@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { useLocation } from "react-router-dom";
 import { Droplets, Fan } from "lucide-react";
+import API_BASE_URL from '../../route/api';
 
-const socket = io("http://localhost:5000");
+const socket = io(`${API_BASE_URL}`);
 
 export default function LastAlert() {
   const [status, setStatus] = useState("Loading...");
@@ -36,7 +37,7 @@ export default function LastAlert() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/humidity/latest")
+    fetch(`${API_BASE_URL}/api/humidity/latest`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {

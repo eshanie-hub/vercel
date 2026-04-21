@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import chatbot from '../assets/Chatbot.png';
+import API_BASE_URL from '../route/api';
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ const Chatbot = () => {
 
         try {
             // Updated to use the chat route in your backend
-            const response = await axios.post('http://localhost:5000/api/chat', { message: input });
+            const response = await axios.post(`${API_BASE_URL}/api/chat`, { message: input });
             setMessages(prev => [...prev, { role: 'model', text: response.data.reply }]);
         } catch (error) {
             setMessages(prev => [...prev, { role: 'model', text: "Server error. Please try again later." }]);

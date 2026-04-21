@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import API_BASE_URL from '../../route/api';
 
 const logStyles = `
   /* EXACT SAME AS TEMPERATURE STYLES */
@@ -157,8 +158,8 @@ export default function HumidityLogs() {
     const fetchRoutes = async () => {
       try {
         const [routesRes, currentRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/route"),
-          axios.get("http://localhost:5000/api/route/current"),
+          axios.get(`${API_BASE_URL}/api/route`),
+          axios.get(`${API_BASE_URL}/api/route/current`),
         ]);
 
         const allRoutes = Array.isArray(routesRes.data) ? routesRes.data : [];
@@ -181,8 +182,8 @@ export default function HumidityLogs() {
     const fetchLogs = async () => {
       try {
         const url = selectedRouteId
-          ? `http://localhost:5000/api/humidity?route_id=${encodeURIComponent(selectedRouteId)}`
-          : "http://localhost:5000/api/humidity";
+          ? `${API_BASE_URL}/api/humidity?route_id=${encodeURIComponent(selectedRouteId)}`
+          : `${API_BASE_URL}/api/humidity`;
 
         const res = await axios.get(url);
         setLogs(res.data);

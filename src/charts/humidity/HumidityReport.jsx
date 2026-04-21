@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_BASE_URL from '../../route/api';
 
 const heatmapStyles = `
 .humidity-container {
@@ -54,14 +55,14 @@ const heatmapStyles = `
 
 export default function HumidityReport() {
     const [data, setData] = useState([]);
-
+    
     useEffect(() => {
         fetchHumidity();
     }, []);
 
     const fetchHumidity = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/humidity");
+            const res = await axios.get(`${API_BASE_URL}/api/humidity`);
             processData(res.data);
         } catch (err) {
             console.error("Error fetching humidity:", err);

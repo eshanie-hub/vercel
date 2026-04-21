@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 // Import outlined icons
 import { Lock, LockKeyholeOpen, AlertTriangle } from 'lucide-react';
+import API_BASE_URL from '../../route/api';
 
-const socket = io('http://localhost:5000');
+const socket = io(`${API_BASE_URL}`);
 
 const BRAND_BLUE = '#1e40af'; 
 const WARN_ORANGE = '#ea0c0c';
@@ -31,7 +32,7 @@ export default function LockStatusCard() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/security')
+        fetch(`${API_BASE_URL}/api/security`)
             .then(res => res.json())
             .then(data => {
                 if (data.length > 0) {

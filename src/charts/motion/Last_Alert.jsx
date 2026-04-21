@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 import { Activity } from 'lucide-react';
+import API_BASE_URL from '../../route/api';
 
-const socket = io('http://localhost:5000', {
+const socket = io(`${API_BASE_URL}`, {
   transports: ['websocket'],
   autoConnect: true
 });
@@ -34,7 +35,7 @@ export default function LastAlert() {
 
   const fetchInitialData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/motion/latest');
+      const response = await axios.get(`${API_BASE_URL}/api/motion/latest`);
       if (response.data) {
         setMotionData({
           status: response.data.status || 'Stable',

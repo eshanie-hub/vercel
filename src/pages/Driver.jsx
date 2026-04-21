@@ -7,9 +7,10 @@ import TempLastAlert from '../charts/temperature/Last_Alert';
 import HumLastAlert from '../charts/humidity/Last_Alert';
 import RouteMap from '../assets/RouteMap';
 import Chatbot from './Chatbot';
+import API_BASE_URL from '../../route/api';
 
 // Initialize Socket outside to prevent multiple connections
-const socket = io("http://localhost:5000");
+const socket = io(`${API_BASE_URL}`);
 
 const pageStyles = `
   .dashboard-root { background-color: #f0f4f8; height: calc(100vh - 60px); padding: 15px; display: flex; gap: 15px; }
@@ -69,7 +70,7 @@ export default function Driver() {
 
   const fetchCurrentRoute = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/route/current');
+      const res = await fetch(`${API_BASE_URL}/api/route/current`);
       const data = await res.json();
       if (res.ok) setActiveRoute(data);
     } catch (err) { console.error('Route fetch failed:', err); }
@@ -86,7 +87,7 @@ export default function Driver() {
     setLoadingRoute(true);
     const endpoint = activeRoute ? '/api/route/end' : '/api/route/start';
     try {
-      const res = await fetch(`http://localhost:5000${endpoint}`, {
+      const res = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });

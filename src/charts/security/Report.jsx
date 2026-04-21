@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../../route/api';
 
 const analyticsStyles = `
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap');
@@ -152,7 +153,7 @@ const SecurityAnalytics = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/security');
+        const response = await axios.get(`${API_BASE_URL}/api/security`);
         setLogs(response.data.sort((a, b) => new Date(b.receivedAt) - new Date(a.receivedAt)));
       } catch (err) { console.error("Error fetching logs:", err); }
     };

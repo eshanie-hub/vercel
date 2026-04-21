@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import bgImage from '../assets/login.png';
+import API_BASE_URL from '../../route/api';
 
 const loginStyles = `
   .auth-container {
@@ -142,7 +143,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, formData);
 
       if (response.data.success) {
         const id = response.data.user.userId;

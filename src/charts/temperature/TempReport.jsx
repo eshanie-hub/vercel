@@ -11,10 +11,11 @@ import {
   Tooltip,
 } from "recharts";
 import { AlertTriangle, X, ClipboardList } from "lucide-react";
+import API_BASE_URL from '../../route/api';
 
-const TEMP_API_URL = "http://localhost:5000/api/temperature";
-const ROUTES_API_URL = "http://localhost:5000/api/route";
-const CURRENT_ROUTE_API_URL = "http://localhost:5000/api/route/current";
+const TEMP_API_URL = `${API_BASE_URL}/api/temperature`;
+const ROUTES_API_URL = `${API_BASE_URL}/api/route`;
+const CURRENT_ROUTE_API_URL = `${API_BASE_URL}/api/route/current`;
 
 const SAFE_MIN = 2;
 const SAFE_MAX = 8;

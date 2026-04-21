@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
+import API_BASE_URL from '../../route/api';
 
-const socket = io('http://localhost:5000');
+const socket = io(`${API_BASE_URL}`);
 
 const motionStyles = `
   .mr-live-row {
@@ -113,12 +114,12 @@ export default function MotionReport() {
   useEffect(() => {
     const fetchMotion = async () => {
       try {
-        const latest = await axios.get('http://localhost:5000/api/motion/latest');
+        const latest = await axios.get(`${API_BASE_URL}/api/motion/latest`);
         if (latest.data) {
           setMotionData(latest.data);
           setRollingRisk(latest.data.rolling_risk || latest.data.risk_score || 0);
         }
-        const all = await axios.get('http://localhost:5000/api/motion');
+        const all = await axios.get(`${API_BASE_URL}/api/motion`);
         if (all.data) setAllLogs(all.data.slice().reverse());
         setLoading(false);
       } catch (e) {
