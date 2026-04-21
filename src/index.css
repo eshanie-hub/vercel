@@ -1,0 +1,25 @@
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Stops scrolling */
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f4f8; /* Matches your dashboard background */
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif !important;
+}
